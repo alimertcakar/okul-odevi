@@ -1,0 +1,8 @@
+{
+  "sorular": ["Soru 9", "Soru 929", "Soru 1299"],
+  "cevaplar": [
+    "function isPalindrome(n) {\r\n        n = n || 1881; \r\n        if (n < 0) return false;\r\n        else if (n < 10) return true;\r\n        let reverse = null; currentNumber = n;\r\n        while (currentNumber > 0) {\r\n            reverse = reverse * 10 + currentNumber % 10;\r\n            currentNumber = Math.floor(currentNumber / 10)\r\n        }\r\n        console.log(reverse === n)\r\n    }\r\n    \r\n    ~function () { isPalindrome() }() ",
+    "let numUniqueEmails = function (emails) {\r\n    let result = new Set();\r\n    for (email of emails) {\r\n        result.add(normalize(email));\r\n    }\r\n    return (result.size);\r\n};\r\nfunction normalize(email) {\r\n    let at = email.indexOf(\"@\");\r\n    let local = email.slice(0, at);\r\n    let rest = email.slice(at, email.length);\r\n    let plus = email.indexOf(\"+\");    //remove characters after plus\r\n    let cutPlus = local.slice(plus);\r\n    if (plus !== -1) local = local.replace(cutPlus, \"\")\r\n    local = local.replace(/\\./g, \"\")\r\n    return (local + rest); //remove dots\r\n}\r\n\r\n",
+    "let arr = [17, 18, 5, 4, 6, 1];\r\nlet replaceElements = function (arr, ind) {\r\n    arr = arr.reverse();\r\n    let sol = [], max = null;\r\n    for (let i = 0; i < arr.length; i++) {\r\n        if (arr[i] > max) {\r\n            sol.push(max)\r\n            max = arr[i]\r\n        }\r\n        else {\r\n            sol.push(max)\r\n        }\r\n    }\r\n    sol.reverse()[sol.length - 1] = -1;\r\n    return sol;\r\n};\r\n\r\n~function () { console.log(replaceElements(arr)) }() //*\u00D6rnek"
+  ]
+}
