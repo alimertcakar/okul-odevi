@@ -7,10 +7,9 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Container, Item } from "./grid.component";
-
+import Solution from "./problem-solver-speed-dialer";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -68,16 +67,23 @@ export default function SimpleTabs(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        {props.cozumAciklamasi[props.cozumId]}
+        {props.cozumAciklamasi}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Çözümün çalışması,{" "}
-        <Typography variant="span" color="secondary">
-          {props.runtimeMs} ms
-        </Typography>{" "}
-        sürdü. İçinde <code>console.log()</code> çağırılan çözümlerin çalışma
-        süresi artıyor. Bu yüzden burada cevapları <code>return</code> ederken,
-        slayt'ta <code>console.log</code> kullandım.
+        {props.isRun ? (
+          <div>
+            Çözümün çalışması,{" "}
+            <Typography variant="span" color="secondary">
+              {props.runtimeMs} MS
+            </Typography>{" "}
+            sürdü. <br />
+            İçinde <code>console.log()</code> çağırılan çözümlerin çalışma
+            süresi artıyor. Bu yüzden burada cevapları <code>return</code>{" "}
+            ederken, slayt'ta <code>console.log</code> kullandım.
+          </div>
+        ) : (
+          "Önce çalıştırın"
+        )}
       </TabPanel>
     </Item>
   );
