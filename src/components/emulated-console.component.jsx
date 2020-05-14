@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "50px",
   },
 }));
-export default function (props) {
+const EmulatedConsole = (props) => {
   const classes = useStyles();
   return (
     <Paper className={classes.root} elevation={3}>
@@ -16,7 +17,15 @@ export default function (props) {
         Konsol <br />
         <br />
       </Typography>
-      {props.cevap}
+      {props.log}
+      eval() içerisinde çalıştırdığım için bazı fonksiyonlar burada gözükmüyor.
+      Düzeltmeye üşendim, kopyalayıp kendi bilgisayarınızda çalıştırabilirsiniz.
     </Paper>
   );
+};
+
+function mapStateToProps(state) {
+  return state.log;
 }
+const ConnectedEmulatedConsole = connect(mapStateToProps)(EmulatedConsole);
+export default ConnectedEmulatedConsole;

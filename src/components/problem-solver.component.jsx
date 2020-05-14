@@ -12,6 +12,18 @@ import Paper from "@material-ui/core/Paper";
 import Solution from "./problem-solver-speed-dialer";
 import { Container, Item } from "./grid.component";
 import importAll from "../importAll";
+import { connect } from "react-redux";
+import Slice from "../logSlice";
+const { updateLog } = Slice.actions;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateLog: (payload) => {
+      dispatch(updateLog(payload));
+    },
+  };
+};
+
 const images = importAll(
   require.context("../../public/img", false, /\.(png|jpe?g|svg)$/)
 );
@@ -33,22 +45,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default (props) => {
+const ProblemSolver = (props) => {
   const [cevap, setCevap] = useState(0);
   const [evalRuntime, setEvalRuntime] = useState(0);
   const [isRun, setIsRun] = useState(false);
 
   const handleChange = (e) => {
     setCevap(e.target.value);
+
     setIsRun(false);
   };
 
   const handleClick = () => {
     var t0 = performance.now();
-    eval(questionsData[platform].cevaplar[cevap]);
+    const qData = questionsData[platform].cevaplar[cevap];
+    const evaluated = eval(qData);
+
+    console.log(questionsData[platform].cevaplar[cevap]);
+    //const evaluated = eval(`${questionsData[platform].cevaplar[cevap]}`);
     var t1 = performance.now();
     setEvalRuntime(t1 - t0);
     setIsRun(true);
+    props.updateLog({
+      log: evaluated + " ",
+    });
   };
 
   const classes = useStyles();
@@ -102,3 +122,5 @@ export default (props) => {
     </Paper>
   );
 };
+
+export default connect(null, mapDispatchToProps)(ProblemSolver);
