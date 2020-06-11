@@ -18,8 +18,7 @@ const EmulatedConsole = (props) => {
         <br />
       </Typography>
       {props.log}
-      eval() içerisinde çalıştırdığım için bazı fonksiyonlar burada gözükmüyor.
-      Düzeltmeye üşendim, kopyalayıp kendi bilgisayarınızda çalıştırabilirsiniz.
+      Çeşitli hatalar var, düzeltmeye vaktim yok.
     </Paper>
   );
 };
